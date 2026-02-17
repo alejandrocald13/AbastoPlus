@@ -1,6 +1,6 @@
 import ValueObject from "./value-object";
 
-export class StringValueObject extends ValueObject<string> {
+export default class StringValueObject extends ValueObject<string> {
     
     constructor(value: string) {
         super(value);
@@ -10,8 +10,8 @@ export class StringValueObject extends ValueObject<string> {
     }
 
     private ensureValueIsStr(value: string){
-        if (typeof(value) != "string"){
-            throw new Error("Value not string")
+        if (value.length >= 5){
+            throw new Error("String must be at least 5 characters")
         }
     }
 

@@ -1,6 +1,6 @@
 import ValueObject from "./value-object";
 
-export class EnumValueObject extends ValueObject<string> {
+export default class EnumValueObject extends ValueObject<string> {
 
     private validValues: string[]
     
