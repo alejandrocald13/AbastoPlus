@@ -2,6 +2,6 @@ import EnumValueObject from "../../../../shared/domain/value-objects/enum-value-
 
 export default class ProductBaseUnits extends EnumValueObject{
     constructor(value: string){
-        super(value, ['Kg', 'g', 'lb', 'ml', 'lt', 'unidad'])
+        super(value, ['Kg', 'g', 'lb', 'ml', 'lt', 'unit'])
     }
 }

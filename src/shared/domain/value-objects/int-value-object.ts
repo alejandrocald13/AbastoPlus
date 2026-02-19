@@ -1,6 +1,6 @@
 import ValueObject from "./value-object";
 
-export class IntValueObject extends ValueObject<number> {
+export default class IntValueObject extends ValueObject<number> {
     
     constructor(value: number) {
         super(value);
