@@ -55,4 +55,8 @@ export default class ProductPresentations{
             }
         }
     }
+
+    public getPresentations() {
+        return this.value
+    }
 }

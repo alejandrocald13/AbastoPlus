@@ -36,7 +36,30 @@ export default class Product{
         return newProduct
     }
 
+    public getId(): string{
+        return this.productId.getValue()
+    }
+    
+    
+    public getName(): string{
+        return this.productName.getValue()
+    } 
 
+    
+    public getBaseUnit(): string{
+        return this.productBaseUnit.getValue()
+    } 
 
+    
+    public getProductPresentations(){
+        const presentations = this.productPresentations.getPresentations()
 
+        const presentationsData = []
+
+        for (const presentation of presentations){
+            presentationsData.push(presentation.getValuePresentations())
+        }
+
+        return presentationsData
+    } 
 }

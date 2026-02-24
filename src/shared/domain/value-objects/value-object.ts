@@ -8,4 +8,8 @@ export default class ValueObject<T>{
     public toString(): string{
         return String(this.value)
     }
+
+    public getValue(): T {
+        return this.value
+    }
 }

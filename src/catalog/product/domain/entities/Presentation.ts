@@ -34,4 +34,22 @@ export default class Presentation{
 
         return newPresentation
     }
+
+    public getValuePresentations():{
+            id: string;
+            name: string;
+            type: string;
+            netQuantity: number;
+            unitOfMeasure: string;
+        }
+    {
+        const presentation = {id: this.presentationId.getValue(),
+            name: this.presentationName.getValue(),
+            type: this.presentationType.getValue(),
+            netQuantity: this.presentationNetQuantity.getValue(),
+            unitOfMeasure: this.presentationUnitOfMeasure.getValue()
+        }
+
+        return presentation
+    }
 }
