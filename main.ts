@@ -1,66 +1,61 @@
-import Product from "./src/catalog/product/domain/Product";
 import MongoProductRepository from "./src/catalog/product/infrastructure/mongo-product-repository";
-import { connectDB, disconnectDB } from "./src/shared/persistence/db";
+import SaveProduct from "./src/catalog/product/application/use-cases/save-product";
 
 async function main() {
-  const id = '550e8400-e29b-41d4-a716-446655440000'
-  const name = 'Pollo Frito'
-  const baseUnit = 'Kg'
-  
-  await connectDB()
-  
+  const id = '660e8400-e29b-41d4-a716-446655440100'
+  const name = 'Salsa de Tomate'
+  const baseUnit = 'lt'
+
   const presentations = [
     {
-      id: '550e8400-e29b-41d4-a716-446655440000',
-      name: 'Bolsa 1Kg',
-      type: 'bag',
-      netQuantity: 1,
-      unitOfMeasure: 'Kg'
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440001',
-      name: 'Bolsa 2Kg',
-      type: 'bag',
-      netQuantity: 2,
-      unitOfMeasure: 'Kg'
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440002',
-      name: 'Caja 5Kg',
-      type: 'box',
-      netQuantity: 5,
-      unitOfMeasure: 'Kg'
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440003',
-      name: 'Caja 10Kg',
-      type: 'box',
-      netQuantity: 10,
-      unitOfMeasure: 'Kg'
-    },
-    {
-      id: '550e8400-e29b-41d4-a716-446655440005',
-      name: 'bottle 20Kg',
+      id: '660e8400-e29b-41d4-a716-446655440101',
+      name: 'Botella 1L',
       type: 'bottle',
+      netQuantity: 1,
+      unitOfMeasure: 'lt'
+    },
+    {
+      id: '660e8400-e29b-41d4-a716-446655440102',
+      name: 'Frasco 500ml',
+      type: 'jar',
+      netQuantity: 0.5,
+      unitOfMeasure: 'lt'
+    },
+    {
+      id: '660e8400-e29b-41d4-a716-446655440103',
+      name: 'Lata 3L',
+      type: 'can',
+      netQuantity: 3,
+      unitOfMeasure: 'lt'
+    },
+    {
+      id: '660e8400-e29b-41d4-a716-446655440104',
+      name: 'Caja 12L',
+      type: 'box',
+      netQuantity: 12,
+      unitOfMeasure: 'lt'
+    },
+    {
+      id: '660e8400-e29b-41d4-a716-446655440105',
+      name: 'Saco 20L',
+      type: 'sack',
       netQuantity: 20,
-      unitOfMeasure: 'Kg'
+      unitOfMeasure: 'lt'
     }
   ]
+
+  try {    
+    const productRepository = new MongoProductRepository()
+
+    // const productRepository = new LocalProductRepository()
   
-  const newProduct = Product.build(id, name, baseUnit, presentations)
+    const saveProduct = new SaveProduct(productRepository)
   
-  const productRepository = new MongoProductRepository()
-  
-  try {
-    
-    const result = await productRepository.save(newProduct)
-    
+    saveProduct.run(id, name, baseUnit, presentations)
+
   } catch (error) {
     console.error(error)
-  }
-  
-  await disconnectDB()
-  
+  }  
 }
 
 main()

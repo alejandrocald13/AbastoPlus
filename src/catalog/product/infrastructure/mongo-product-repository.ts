@@ -1,10 +1,13 @@
 import Product from "../domain/Product";
 import ProductRepository from "../application/product-repository";
 import { ProductModel } from "./Product";
+import { connectDB, disconnectDB } from "../../../shared/persistence/db";
 
 
 export default class MongoProductRepository implements ProductRepository{
     async save(data: Product): Promise<void> {
+
+        await connectDB()
 
         const product = data
         const presentations = []
@@ -24,5 +27,7 @@ export default class MongoProductRepository implements ProductRepository{
         })
 
         console.log(productDb)
+
+        await disconnectDB()
     }
 }
