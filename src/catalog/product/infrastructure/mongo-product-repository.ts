@@ -2,8 +2,9 @@ import Product from "../domain/Product";
 import ProductRepository from "../application/product-repository";
 import { ProductModel } from "./Product";
 import { connectDB, disconnectDB } from "../../../shared/persistence/db";
+import { injectable } from "inversify";
 
-
+@injectable()
 export default class MongoProductRepository implements ProductRepository{
     async save(data: Product): Promise<void> {
 

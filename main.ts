@@ -1,5 +1,8 @@
-import MongoProductRepository from "./src/catalog/product/infrastructure/mongo-product-repository";
-import SaveProduct from "./src/catalog/product/application/use-cases/save-product";
+// import MongoProductRepository from "./src/catalog/product/infrastructure/mongo-product-repository";
+// import SaveProduct from "./src/catalog/product/application/use-cases/product-service";
+import container from "./src/catalog/product/infrastructure/container";
+import SaveProduct from "./src/catalog/product/application/use-cases/product-save";
+import { TYPES } from "./src/catalog/product/infrastructure/types";
 
 async function main() {
   const id = '660e8400-e29b-41d4-a716-446655440100'
@@ -45,13 +48,10 @@ async function main() {
   ]
 
   try {    
-    const productRepository = new MongoProductRepository()
 
-    // const productRepository = new LocalProductRepository()
-  
-    const saveProduct = new SaveProduct(productRepository)
-  
-    saveProduct.run(id, name, baseUnit, presentations)
+    const repository = container.get<SaveProduct>(TYPES.ProductService)
+
+    const product = repository.run(id, name, baseUnit, presentations)
 
   } catch (error) {
     console.error(error)
