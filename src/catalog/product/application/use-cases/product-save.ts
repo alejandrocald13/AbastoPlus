@@ -1,4 +1,4 @@
-import type ProductRepository from "../product-repository";
+import type ProductRepository from "../ports/product-repository";
 import Product from "../../domain/Product";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../../infrastructure/types";

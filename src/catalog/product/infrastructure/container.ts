@@ -1,8 +1,11 @@
 import { Container } from "inversify";
 import MongoProductRepository from "./mongo-product-repository";
 import SaveProduct from "../application/use-cases/product-save";
-import ProductRepository from "../application/product-repository";
+import ProductRepository from "../application/ports/product-repository";
 import { TYPES } from "./types";
+import TranslatorService from "../application/ports/translator-service";
+import TranslateMyMemory from "./mymemory-translator";
+import ProductNameTranslate from "../application/use-cases/product-name-translate";
 
 const container = new Container();
 
@@ -16,5 +19,14 @@ if (USE == 'MongoDb'){
 // }
 
 container.bind<SaveProduct>(TYPES.ProductService).to(SaveProduct)
+
+const USE_TRANSLATOR = 'MyMemory'
+
+if (USE_TRANSLATOR == 'MyMemory'){
+    container.bind<TranslatorService>(TYPES.TranslateService).to(TranslateMyMemory).inTransientScope()
+}
+
+
+container.bind<ProductNameTranslate>(TYPES.ProductNameTranslate).to(ProductNameTranslate)
 
 export default container;
