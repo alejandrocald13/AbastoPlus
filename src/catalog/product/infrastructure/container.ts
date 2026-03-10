@@ -4,7 +4,8 @@ import SaveProduct from "../application/use-cases/product-save";
 import ProductRepository from "../application/ports/product-repository";
 import { TYPES } from "./types";
 import TranslatorService from "../application/ports/translator-service";
-import TranslateMyMemory from "./mymemory-translator";
+// import TranslateMyMemory from "./mymemory-translator";
+import TranslateGoogleFree from "./googlefree-translator";
 import ProductNameTranslate from "../application/use-cases/product-name-translate";
 
 const container = new Container();
@@ -20,10 +21,10 @@ if (USE == 'MongoDb'){
 
 container.bind<SaveProduct>(TYPES.ProductService).to(SaveProduct)
 
-const USE_TRANSLATOR = 'MyMemory'
+const USE_TRANSLATOR = 'GoogleFree'
 
-if (USE_TRANSLATOR == 'MyMemory'){
-    container.bind<TranslatorService>(TYPES.TranslateService).to(TranslateMyMemory).inTransientScope()
+if (USE_TRANSLATOR == 'GoogleFree'){
+    container.bind<TranslatorService>(TYPES.TranslateService).to(TranslateGoogleFree).inTransientScope()
 }
 
 

@@ -6,45 +6,38 @@ import ProductNameTranslate from "./src/catalog/product/application/use-cases/pr
 import { TYPES } from "./src/catalog/product/infrastructure/types";
 
 async function main() {
-  const id = '660e8400-e29b-41d4-a716-446655440100'
-  const name = 'Coca Cola de Vainilla'
-  const baseUnit = 'Kg'
+  const id = '770e8400-e29b-41d4-a716-446655440200'
+  const name = 'Aceite de Oliva Extra Virgen 750ml - Marca OlivaReal - Producto Natural Premium'
+  const baseUnit = 'ml'
 
   const presentations = [
     {
-      id: '660e8400-e29b-41d4-a716-446655440101',
-      name: 'Botella 1L',
+      id: '770e8400-e29b-41d4-a716-446655440201',
+      name: 'Botella 250ml',
       type: 'bottle',
-      netQuantity: 1,
-      unitOfMeasure: 'Kg'
+      netQuantity: 250,
+      unitOfMeasure: 'ml'
     },
     {
-      id: '660e8400-e29b-41d4-a716-446655440102',
-      name: 'Frasco 500ml',
-      type: 'jar',
-      netQuantity: 0.5,
-      unitOfMeasure: 'Kg'
+      id: '770e8400-e29b-41d4-a716-446655440202',
+      name: 'Botella 500ml',
+      type: 'bottle',
+      netQuantity: 500,
+      unitOfMeasure: 'ml'
     },
     {
-      id: '660e8400-e29b-41d4-a716-446655440103',
-      name: 'Lata 3L',
-      type: 'can',
-      netQuantity: 3,
-      unitOfMeasure: 'Kg'
+      id: '770e8400-e29b-41d4-a716-446655440203',
+      name: 'Botella 750ml',
+      type: 'bottle',
+      netQuantity: 750,
+      unitOfMeasure: 'ml'
     },
     {
-      id: '660e8400-e29b-41d4-a716-446655440104',
-      name: 'Caja 12L',
-      type: 'box',
-      netQuantity: 12,
-      unitOfMeasure: 'Kg'
-    },
-    {
-      id: '660e8400-e29b-41d4-a716-446655440105',
-      name: 'Saco 20L',
-      type: 'sack',
-      netQuantity: 20,
-      unitOfMeasure: 'Kg'
+      id: '770e8400-e29b-41d4-a716-446655440204',
+      name: 'Botella 2lt',
+      type: 'bottle',
+      netQuantity: 2000,
+      unitOfMeasure: 'ml'
     }
   ]
 
