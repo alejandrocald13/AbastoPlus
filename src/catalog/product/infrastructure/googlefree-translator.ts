@@ -21,7 +21,8 @@ export default class TranslateGoogleFree implements TranslatorService {
                     tl: to,
                     dt: "t",
                     q: text
-                }
+                },
+                timeout: 5000
             }
         );
 

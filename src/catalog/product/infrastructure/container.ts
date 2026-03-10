@@ -6,7 +6,6 @@ import { TYPES } from "./types";
 import TranslatorService from "../application/ports/translator-service";
 // import TranslateMyMemory from "./mymemory-translator";
 import TranslateGoogleFree from "./googlefree-translator";
-import ProductNameTranslate from "../application/use-cases/product-name-translate";
 
 const container = new Container();
 
@@ -26,8 +25,5 @@ const USE_TRANSLATOR = 'GoogleFree'
 if (USE_TRANSLATOR == 'GoogleFree'){
     container.bind<TranslatorService>(TYPES.TranslateService).to(TranslateGoogleFree).inTransientScope()
 }
-
-
-container.bind<ProductNameTranslate>(TYPES.ProductNameTranslate).to(ProductNameTranslate)
 
 export default container;

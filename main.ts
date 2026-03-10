@@ -6,7 +6,7 @@ import ProductNameTranslate from "./src/catalog/product/application/use-cases/pr
 import { TYPES } from "./src/catalog/product/infrastructure/types";
 
 async function main() {
-  const id = '770e8400-e29b-41d4-a716-446655440200'
+  const id = '770e8400-e29b-41d4-a716-446655440300'
   const name = 'Aceite de Oliva Extra Virgen 750ml - Marca OlivaReal - Producto Natural Premium'
   const baseUnit = 'ml'
 
@@ -45,11 +45,7 @@ async function main() {
 
     const saveProduct = container.get<SaveProduct>(TYPES.ProductService)
 
-    const translateName = container.get<ProductNameTranslate>(TYPES.ProductNameTranslate)
-
-    const newName = String(await translateName.run(name))
-
-    saveProduct.run(id, newName, baseUnit, presentations)
+    saveProduct.run(id, name, baseUnit, presentations)
 
 
   } catch (error) {
