@@ -2,7 +2,6 @@
 // import SaveProduct from "./src/catalog/product/application/use-cases/product-service";
 import container from "./src/catalog/product/infrastructure/container";
 import SaveProduct from "./src/catalog/product/application/use-cases/product-save";
-import ProductNameTranslate from "./src/catalog/product/application/use-cases/product-name-translate";
 import { TYPES } from "./src/catalog/product/infrastructure/types";
 
 async function main() {
