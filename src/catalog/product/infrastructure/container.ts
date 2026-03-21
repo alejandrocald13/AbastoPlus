@@ -7,6 +7,7 @@ import TranslatorService from "../application/ports/translator-service";
 import TranslateGoogleFree from "./googlefree-translator";
 import inMemoryEventBus from "./inMemoryEventBus";
 import { EventBus } from "../../../shared/domain/ports/eventBus";
+import TranslateProductName from "../application/use-cases/translate-product-name";
 
 const container = new Container();
 
@@ -33,8 +34,7 @@ if (USE_EVENT_BUS == 'inMemory'){
     container.bind<EventBus>(TYPES.EventBus).to(inMemoryEventBus).inSingletonScope()
 }
 
-
-
+container.bind<TranslateProductName>(TYPES.TranslateProductName).to(TranslateProductName)
 
 export default container;
 

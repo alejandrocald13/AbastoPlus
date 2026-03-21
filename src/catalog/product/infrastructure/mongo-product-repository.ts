@@ -6,6 +6,7 @@ import { injectable } from "inversify";
 
 @injectable()
 export default class MongoProductRepository implements ProductRepository{
+
     async save(data: Product): Promise<void> {
 
         await connectDB()
@@ -27,7 +28,17 @@ export default class MongoProductRepository implements ProductRepository{
             presentations: presentations
         })
 
-        console.log(productDb)
+        console.log(`Producto Creado Exitosamente: \n${productDb}`)
+
+        await disconnectDB()
+    }
+
+    async update(id: string, productData: { name?: string; baseUnit?: string; }): Promise<void> {
+        await connectDB()
+
+        const updatedProduct = await ProductModel.findByIdAndUpdate(id, {product_name: productData.name, product_base_unit: productData.baseUnit}, {new: true})
+
+        console.log(`Producto Actualizado Exitosamente: \n${updatedProduct}`)
 
         await disconnectDB()
     }

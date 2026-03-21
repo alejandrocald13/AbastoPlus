@@ -27,10 +27,10 @@ export default class SaveProduct{
 
         const newProduct = Product.build(id, name, baseUnit, presentations)
 
-        // const saveProduct = await this.repository.save(newProduct)
+        const saveProduct = await this.repository.save(newProduct)
 
-        const eventBusData = {event: "catalog.product_created", payload: {id, name}}
+        const productCreated = {key: "catalog.product_created", ocurred_at: new Date(), payload: {id, name}}
 
-        this.eventBus.publish<SaveProductPayload>(eventBusData)
+        this.eventBus.publish<SaveProductPayload>(productCreated)
     }
 }
