@@ -2,14 +2,16 @@
 // import SaveProduct from "./src/catalog/product/application/use-cases/product-service";
 import container from "./src/catalog/product/infrastructure/container";
 import SaveProduct from "./src/catalog/product/application/use-cases/product-save";
-import ProductNameTranslate from "./src/catalog/product/application/use-cases/product-name-translate";
 import { TYPES } from "./src/catalog/product/infrastructure/types";
+import { EventBus } from "./src/shared/domain/ports/eventBus";
 
 async function main() {
-  const id = '770e8400-e29b-41d4-a716-446655440300'
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+  const id = '770e8400-e29b-41d4-a716-446655440800'
   const name = 'Aceite de Oliva Extra Virgen 750ml - Marca OlivaReal - Producto Natural Premium'
   const baseUnit = 'ml'
-
+  
   const presentations = [
     {
       id: '770e8400-e29b-41d4-a716-446655440201',
@@ -45,8 +47,13 @@ async function main() {
 
     const saveProduct = container.get<SaveProduct>(TYPES.ProductService)
 
+    const eventBus = container.get<EventBus>(TYPES.EventBus) // event-bus
+
     saveProduct.run(id, name, baseUnit, presentations)
 
+    await sleep(15000)
+
+    eventBus.consume('catalog.product_created', 1) // queue 1
 
   } catch (error) {
     console.error(error)

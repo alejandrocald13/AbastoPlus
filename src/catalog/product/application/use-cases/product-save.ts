@@ -2,13 +2,17 @@ import type ProductRepository from "../ports/product-repository";
 import Product from "../../domain/Product";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../../infrastructure/types";
-import type TranslatorService from "../ports/translator-service";
+import { type EventBus } from "../../../../shared/domain/ports/eventBus";
 
+type SaveProductPayload = {
+    id: string,
+    name: string
+}
 
 @injectable()
 export default class SaveProduct{
 
-    constructor(@inject(TYPES.ProductRepository) private repository: ProductRepository, @inject(TYPES.TranslateService) private translateService: TranslatorService){
+    constructor(@inject(TYPES.ProductRepository) private repository: ProductRepository, @inject(TYPES.EventBus) private eventBus: EventBus){
     }
 
     async run(id: string, name: string, baseUnit: string, 
@@ -21,11 +25,12 @@ export default class SaveProduct{
         }[]
     ): Promise<void> {
 
-        const newName = String(await this.translateService.translate(name))
+        const newProduct = Product.build(id, name, baseUnit, presentations)
 
-        const newProduct = Product.build(id, newName, baseUnit, presentations)
+        const saveProduct = await this.repository.save(newProduct)
 
-        await this.repository.save(newProduct)
+        const productCreated = {key: "catalog.product_created", ocurred_at: new Date(), payload: {id, name}}
 
+        this.eventBus.publish<SaveProductPayload>(productCreated)
     }
 }
