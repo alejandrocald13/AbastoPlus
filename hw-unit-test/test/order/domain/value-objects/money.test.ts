@@ -1,5 +1,5 @@
-import Money from "./money";
-import { InvalidMoneyError, CurrencyMismatchError } from "./money-error";
+import Money from "../../../../src/order/domain/entities/money";
+import { InvalidMoneyError, CurrencyMismatchError } from "../../../../src/order/domain/errors/money-error";
 
 
 

@@ -1,4 +1,4 @@
-import IdentifierValueObject from "../src/shared/domain/value-objects/identifier-value-object";
+import IdentifierValueObject from "../../../../../src/shared/domain/value-objects/identifier-value-object"
 
 export default class CustomerId extends IdentifierValueObject{
     constructor(id: string){

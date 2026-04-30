@@ -1,4 +1,4 @@
-import { InvalidMoneyError, CurrencyMismatchError } from "./money-error";
+import { InvalidMoneyError, CurrencyMismatchError } from "../errors/money-error";
 
 
 
