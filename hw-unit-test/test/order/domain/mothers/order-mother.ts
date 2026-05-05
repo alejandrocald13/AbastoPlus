@@ -3,16 +3,23 @@ import CustomerId from "../../../../src/order/domain/value-objects/order-custome
 import Money from "../../../../src/order/domain/entities/money";
 import OrderQuantity from "../../../../src/order/domain/value-objects/order-quantity";
 import ProductId from "../../../../src/order/domain/value-objects/product-id";
+import OrderId from "../../../../src/order/domain/value-objects/order-id";
 
 export default class OrderMother{
+    public static generateUuid(): string {
+        return crypto.randomUUID();
+    }
+
     public static draft(): Order{
-        const newOrder = Order.create(CustomerId.from('550e8400-e29b-41d4-a716-446655440000'))
+        const orderId = this.generateUuid()
+        const newOrder = Order.create(orderId, CustomerId.from('550e8400-e29b-41d4-a716-446655440000'))
 
         return newOrder
     }
 
     public static cancelled(): Order{
-        const newOrder = Order.create(CustomerId.from('550e8400-e29b-41d4-a716-446655440000'))
+        const orderId = this.generateUuid()
+        const newOrder = Order.create(orderId, CustomerId.from('550e8400-e29b-41d4-a716-446655440000'))
 
         newOrder.cancel('Test cancellation')
 
@@ -20,15 +27,17 @@ export default class OrderMother{
     }
 
     public static create(customerId: string): Order{
-        const newOrder = Order.create(CustomerId.from(customerId))
+        const orderId = this.generateUuid()
+        const newOrder = Order.create(orderId, CustomerId.from(customerId))
 
         return newOrder
     }
 
     public static withItems(n=1): Order{
+        const orderId = this.generateUuid()
         const totalItems = n ?? Math.floor(Math.random() * 5) + 1;
 
-        const order = Order.create(CustomerId.from("550e8400-e29b-41d4-a716-446655440000"));
+        const order = Order.create(orderId, CustomerId.from("550e8400-e29b-41d4-a716-446655440000"));
 
         for (let i = 0; i < totalItems; i++) {
             const productId = ProductId.from("550e8400-e29b-41d4-a716-446655440001");
